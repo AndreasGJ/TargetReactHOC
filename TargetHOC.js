@@ -16,7 +16,7 @@ function TargetHOC(WrappedComponent) {
         renderTargetRequest(offers = []) {
           adobe.target.applyOffer({
             mbox: "target-global-mbox",
-            offer: offers.map(({ found, ...x }) => ({ ...x }))
+            offer: (offers || []).map(({ found, ...x }) => ({ ...x }))
           });
         }
         targetUpdate() {
