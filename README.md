@@ -18,3 +18,21 @@ componentDidUpdate() {
     }
 }
 ```
+
+And here is how to wrap your component with the `TargetHOC` component:
+
+```javascript
+// First of all import the HOC
+import TargetHOC from "./../helpers/hoc/TargetHOC";
+
+// Setup your component
+class TargetExample extends React.Component {
+...
+}
+
+// and lastly wrap the component with the HOC function
+export default TargetHOC(TargetExample);
+```
+
+## What is happening
+First of all the HOC will execute the `adobe.target.getOffer`on `componentDidMount`. All the returned offers will then be executed and saved in the state for the wrapped HOC component. This means that we dont have to ask Target for offers anymore, because we already have the answer for the given component. So every time the `targetUpdate` function is executed we are using the saved data in the `adobe.target.applyOffer` method.
